@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PasarKita - Jual Beli Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER: logo, kotak pencarian, tombol keranjang -->
+  <header class="header">
+    <div class="container header-isi">
+      <h1 class="logo">Pasar<span>Kita</span></h1>
+      <input type="search" id="kotakCari" class="input cari" placeholder="Cari produk..." aria-label="Cari produk">
+      <button id="tombolKeranjang" class="tombol tombol-keranjang">
+        Keranjang <span id="jumlahKeranjang" class="badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- TOOLBAR: filter kategori dan urutan -->
+    <section class="toolbar">
+      <div id="filterKategori" class="filter" role="group" aria-label="Filter kategori"></div>
+      <label class="urut">
+        Urutkan:
+        <select id="pilihUrutan" class="input">
+          <option value="terbaru">Terbaru</option>
+          <option value="termurah">Harga terendah</option>
+          <option value="termahal">Harga tertinggi</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- DAFTAR PRODUK -->
+    <section>
+      <h2 class="judul">Produk</h2>
+      <p id="infoHasil" class="info"></p>
+      <div id="daftarProduk" class="grid"></div>
+    </section>
+
+    <!-- FORM JUAL BARANG -->
+    <section id="bagianJual" class="kotak">
+      <h2 class="judul">Jual barang</h2>
+      <form id="formJual" class="form" novalidate>
+        <label>Nama produk
+          <input type="text" id="jualNama" class="input" placeholder="Contoh: Kamera analog">
+        </label>
+        <label>Harga (Rp)
+          <input type="number" id="jualHarga" class="input" min="1" placeholder="150000">
+        </label>
+        <label>Kategori
+          <select id="jualKategori" class="input"></select>
+        </label>
+        <label class="lebar">Deskripsi
+          <textarea id="jualDeskripsi" class="input" rows="3" placeholder="Kondisi, ukuran, kelengkapan..."></textarea>
+        </label>
+        <p id="pesanJual" class="pesan lebar" role="alert"></p>
+        <button type="submit" class="tombol">Pasang barang</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- KERANJANG (panel geser dari kanan) -->
+  <div id="lapisan" class="lapisan"></div>
+  <aside id="panelKeranjang" class="panel" aria-label="Keranjang belanja">
+    <div class="panel-kepala">
+      <h2>Keranjang belanja</h2>
+      <button id="tutupKeranjang" class="tombol-ikon" aria-label="Tutup keranjang">✕</button>
+    </div>
+
+    <div id="isiKeranjang"></div>
+
+    <!-- Form checkout (disembunyikan saat keranjang kosong) -->
+    <form id="formCheckout" class="form form-satu" novalidate>
+      <h3>Data pengiriman</h3>
+      <label>Nama lengkap
+        <input type="text" id="coNama" class="input">
+        <small class="error" id="errNama"></small>
+      </label>
+      <label>Alamat
+        <textarea id="coAlamat" class="input" rows="2"></textarea>
+        <small class="error" id="errAlamat"></small>
+      </label>
+      <label>Nomor telepon
+        <input type="tel" id="coTelepon" class="input" placeholder="08123456789">
+        <small class="error" id="errTelepon"></small>
+      </label>
+      <button type="submit" class="tombol">Bayar sekarang</button>
+    </form>
+
+    <!-- Pesan konfirmasi setelah checkout berhasil -->
+    <div id="konfirmasi" class="konfirmasi" hidden></div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
